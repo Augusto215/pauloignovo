@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reencontro — Exposição de Arte Indígena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="idiomas" id="idiomas" aria-label="Idioma"></nav>
+
+  <main class="cartaz">
+    <header class="topo">
+      <img class="deco flor-topo esq" src="assets/ilustracoes/flor-vermelha.webp" alt="" />
+      <img class="deco flor-topo dir" src="assets/ilustracoes/flor-azul.webp" alt="" />
+      <h1><img id="titulo" alt="" /></h1>
+      <p class="subtitulo" id="subtitulo"></p>
+    </header>
+
+    <section class="curadores">
+      <img class="deco lado esq" id="faixa" alt="" />
+      <img class="deco lado dir" src="assets/ilustracoes/ramo.webp" alt="" />
+      <div id="video-curadores"></div>
+      <p class="vermelho" id="texto-curadores"></p>
+    </section>
+
+    <div class="corpo">
+    <div class="espalhadas" id="espalhadas" aria-hidden="true"></div>
+    <h2 class="rotulo" id="rotulo-artistas"></h2>
+    <ul class="artistas" id="lista-artistas"></ul>
+
+    <section class="sem-video" id="sem-video" hidden>
+      <img class="deco maos" src="assets/ilustracoes/aperto-de-maos.webp" alt="" />
+      <h3 class="rotulo pequeno" id="rotulo-sem-video"></h3>
+      <ul id="lista-sem-video"></ul>
+    </section>
+    </div>
+  </main>
+
+  <footer class="realizacao">
+    <h2 id="rotulo-realizacao"></h2>
+    <ul class="logos" id="logos"></ul>
+  </footer>
+
+  <dialog class="player" id="player">
+    <button class="fechar" id="fechar" aria-label="Fechar">×</button>
+    <p class="vermelho player-nome" id="player-nome"></p>
+    <div class="player-tela" id="player-tela"></div>
+  </dialog>
+
+  <template id="tpl-tela">
+    <button class="tela" type="button">
+      <svg class="tela-icone" viewBox="0 0 120 84" aria-hidden="true">
+        <rect x="3" y="3" width="114" height="78" rx="12" fill="none" stroke="#111" stroke-width="5"/>
+        <path d="M3 58 H117 V69 a12 12 0 0 1 -12 12 H15 a12 12 0 0 1 -12 -12 Z" fill="#111"/>
+        <line x1="12" y1="69.5" x2="108" y2="69.5" stroke="#f3b42c" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="25" cy="69.5" r="6" fill="#111" stroke="#f3b42c" stroke-width="2.6"/>
+        <path class="play" d="M52 18 Q49 16 49 20 V44 Q49 48 52 46 L72 34 Q75 32 72 30 Z" fill="#111"/>
+      </svg>
+      <span class="em-breve"></span>
+    </button>
+  </template>
+
+  <script src="dados.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
