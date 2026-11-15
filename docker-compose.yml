@@ -4,5 +4,5 @@ services:
     image: reencontro-site
     container_name: reencontro-site
     ports:
-      - "8080:80"
+      - "7072:80"
     restart: unless-stopped

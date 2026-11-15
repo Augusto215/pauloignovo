@@ -254,7 +254,13 @@ html, body { overflow-x: hidden; }
 
 /* ---------- player ---------- */
 .player {
-  width: min(960px, 94vw);
+  /* cabe na tela inteira: limita pela largura E pela altura (celular deitado) */
+  width: min(960px, calc(100vw - 1.5rem), calc((100dvh - 7rem) * 16 / 9 + 2.6rem));
+  max-width: none;
+  max-height: calc(100dvh - 1rem);
+  margin: auto;
+  box-sizing: border-box;
+  overflow: hidden;
   border: 5px solid var(--preto);
   border-radius: 18px;
   background: var(--amarelo) url("assets/textura.jpg");
@@ -265,6 +271,12 @@ html, body { overflow-x: hidden; }
 .player::backdrop { background: rgba(0,0,0,.75); }
 .player-nome { font-size: 1.3rem; padding-right: 2.5rem; margin-bottom: .7rem; }
 .player-tela { aspect-ratio: 16 / 9; background: #000; border-radius: 10px; overflow: hidden; }
+@media (max-width: 560px), (max-height: 500px) {
+  .player { padding: .6rem .6rem .8rem; border-width: 4px; border-radius: 14px; }
+  .player-nome { font-size: 1rem; margin-bottom: .5rem; }
+  .player-tela { border-radius: 6px; }
+  .fechar { top: .3rem; right: .4rem; width: 2rem; height: 2rem; font-size: 1.3rem; }
+}
 .player-tela iframe, .player-tela video { width: 100%; height: 100%; border: 0; display: block; }
 .fechar {
   position: absolute; top: .5rem; right: .7rem;
