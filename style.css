@@ -314,3 +314,36 @@ html, body { overflow-x: hidden; }
     background: var(--amarelo);
   }
 }
+
+/* celular: o vídeo abre em tela cheia, fundo preto, vídeo inteiro (16:9) no centro */
+.player.cheia[open] {
+  width: 100vw; height: 100vh; height: 100dvh;
+  max-width: none; max-height: none;
+  margin: 0; inset: 0;
+  padding: 0;
+  border: 0; border-radius: 0;
+  background: #000;
+  display: flex; align-items: center; justify-content: center;
+}
+.player.cheia::backdrop { background: #000; }
+.player.cheia .player-tela {
+  width: min(100vw, 100dvh * 16 / 9);
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 0;
+}
+.player.cheia .player-nome {
+  display: block;
+  position: absolute; top: .7rem; left: .8rem; right: 3.4rem;
+  margin: 0; padding: 0;
+  color: #fff; font-size: .95rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.player.cheia .fechar {
+  position: fixed; top: .5rem; right: .5rem; z-index: 2;
+  width: 2.2rem; height: 2.2rem; border-width: 2px; font-size: 1.4rem;
+  background: var(--amarelo); color: var(--preto);
+}
+@media (orientation: landscape) {
+  .player.cheia .player-nome { display: none; }
+}

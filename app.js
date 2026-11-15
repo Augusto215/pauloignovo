@@ -75,14 +75,49 @@
     el.src = v.src;
     tela.appendChild(el);
     $("player-nome").textContent = titulo;
+    const cheia = celular.matches;
+    player.classList.toggle("cheia", cheia);
     player.showModal();
+    if (cheia) entrarTelaCheia();
   }
   function fecharPlayer() {
     $("player-tela").replaceChildren(); // para o vídeo
     if (player.open) player.close();
   }
+
+  /* No celular o vídeo abre em tela cheia. Onde o navegador deixa
+     (Android), também esconde as barras e gira a tela para deitado.
+     No iPhone fica só a tela cheia via CSS (classe .cheia). */
+  const celular = matchMedia("(pointer: coarse) and (max-width: 1024px), (pointer: coarse) and (max-height: 600px)");
+  function entrarTelaCheia() {
+    const raiz = document.documentElement;
+    const pedir = raiz.requestFullscreen || raiz.webkitRequestFullscreen;
+    if (!pedir) return;
+    try {
+      Promise.resolve(pedir.call(raiz, { navigationUI: "hide" }))
+        .then(() => screen.orientation && screen.orientation.lock && screen.orientation.lock("landscape"))
+        .catch(() => {});
+    } catch (e) { /* navegador não deixou: segue com a tela cheia via CSS */ }
+  }
+  function sairTelaCheia() {
+    try { screen.orientation && screen.orientation.unlock && screen.orientation.unlock(); } catch (e) {}
+    const el = document.fullscreenElement || document.webkitFullscreenElement;
+    if (!el) return;
+    const sair = document.exitFullscreen || document.webkitExitFullscreen;
+    if (sair) Promise.resolve(sair.call(document)).catch(() => {});
+  }
+  // botão "voltar" do Android sai da tela cheia: fecha o vídeo junto
+  const aoMudarTelaCheia = () => {
+    if (!(document.fullscreenElement || document.webkitFullscreenElement) && player.open) fecharPlayer();
+  };
+  document.addEventListener("fullscreenchange", aoMudarTelaCheia);
+  document.addEventListener("webkitfullscreenchange", aoMudarTelaCheia);
+
   $("fechar").addEventListener("click", fecharPlayer);
-  player.addEventListener("close", () => $("player-tela").replaceChildren());
+  player.addEventListener("close", () => {
+    $("player-tela").replaceChildren();
+    sairTelaCheia();
+  });
   player.addEventListener("click", (e) => { if (e.target === player) fecharPlayer(); });
 
   /* ---------- montagem da página ---------- */
