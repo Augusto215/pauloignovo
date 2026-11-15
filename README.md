@@ -2,8 +2,9 @@
 
 ## Vídeos
 
-Os vídeos são arquivos `.mp4` servidos pelo próprio site (assim abrem em tela
-cheia e já começam a tocar, inclusive no iPhone). Eles **não vão para o git**:
+Hoje os vídeos vêm do Google Drive (abrem em tela cheia; o play é manual).
+Opcionalmente dá para servir `.mp4` pelo próprio site, que aí já começam a
+tocar sozinhos, inclusive no iPhone. Esses arquivos **não vão para o git**:
 ficam na pasta `videos/`, ao lado do `docker-compose.yml`, que é montada no
 container.
 
