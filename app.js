@@ -75,20 +75,18 @@
     el.src = v.src;
     tela.appendChild(el);
     $("player-nome").textContent = titulo;
-    const cheia = celular.matches;
-    player.classList.toggle("cheia", cheia);
+    player.classList.add("cheia");
     player.showModal();
-    if (cheia) entrarTelaCheia();
+    entrarTelaCheia();
   }
   function fecharPlayer() {
     $("player-tela").replaceChildren(); // para o vídeo
     if (player.open) player.close();
   }
 
-  /* No celular o vídeo abre em tela cheia. Onde o navegador deixa
-     (Android), também esconde as barras e gira a tela para deitado.
-     No iPhone fica só a tela cheia via CSS (classe .cheia). */
-  const celular = matchMedia("(pointer: coarse) and (max-width: 1024px), (pointer: coarse) and (max-height: 600px)");
+  /* O vídeo sempre abre em tela cheia (computador e celular). No Android
+     também gira a tela para deitado. Onde o navegador não deixa entrar em
+     tela cheia sozinho (iPhone), fica a tela cheia via CSS (classe .cheia). */
   function entrarTelaCheia() {
     const raiz = document.documentElement;
     const pedir = raiz.requestFullscreen || raiz.webkitRequestFullscreen;
