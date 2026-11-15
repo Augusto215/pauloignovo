@@ -5,4 +5,7 @@ services:
     container_name: reencontro-site
     ports:
       - "7072:80"
+    volumes:
+      # vídeos ficam fora do git: copie os .mp4 para a pasta videos/ ao lado deste arquivo
+      - ./videos:/usr/share/nginx/html/videos:ro
     restart: unless-stopped

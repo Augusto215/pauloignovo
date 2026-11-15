@@ -2,10 +2,12 @@
    DADOS DA EXPOSIÇÃO — é só editar este arquivo.
    ---------------------------------------------------------------------
    video: pode ser
+     - arquivo de vídeo do site  ex: "videos/ara-guarani.mp4"  (recomendado:
+       abre em tela cheia e já começa a tocar). Os arquivos ficam na pasta
+       videos/ do servidor, que NÃO vai pro git (ver README).
      - link do Google Drive (arquivo compartilhado "qualquer pessoa com o link")
      - link do YouTube   ex: "https://youtu.be/XXXXXXXXXXX"
      - link do Vimeo     ex: "https://vimeo.com/123456789"
-     - arquivo local     ex: "videos/ara-guarani.mp4"
      - ""   (vazio)  = tem vídeo, mas o link ainda não foi colocado ("em breve")
      - null          = artista sem vídeo (aparece em "Também participam")
 
@@ -13,7 +15,7 @@
      Se não colocar, o site procura sozinho em assets/thumbs/ pelo nome
      do artista sem acento, ex: "Sr. Pedro Tupinikim" -> sr-pedro-tupinikim.webp
 
-   Vídeos: pasta "VIDEOS ARTISTAS" do Drive do projeto.
+   Vídeos originais: pasta "VIDEOS ARTISTAS" do Drive do projeto.
    ===================================================================== */
 
 const DRIVE = (id) => `https://drive.google.com/file/d/${id}/view`;
@@ -91,30 +93,30 @@ const EXPOSICAO = {
   },
 
   curadores: {
-    video: DRIVE("1KCgTQuIaspnuQ0GErDFl5ahwgl2QbcP-"),
+    video: "videos/curadores.mp4",
     thumb: "assets/thumbs/curadores.webp",
   },
 
   artistas: [
-    { nome: "Ará Guarani",              aldeia: "Piraque-Açu",     video: DRIVE("1a9QF9ACGC0Sv8TwWemvoR9w1TUM1zoIB") },
-    { nome: "Cláudia Guarani",          aldeia: "Nova Esperança",  video: DRIVE("1Ohdti0yBqOyg0ID_IQSe8OHiJFW5LC1s") },
-    { nome: "Cláudiomiro Guarani",      aldeia: "Boa Esperança",   video: DRIVE("1K5VKBprUbL6Xva05LCSL2vv6kTqSVJ5p") },
-    { nome: "Daniela Tupinikim",        aldeia: "Caieiras Velha",  video: DRIVE("1nGhdiL7yHzacNyNZxfoas4qvBLQVl05C") },
-    { nome: "Fran Guarani",             aldeia: "Boa Esperança",   video: DRIVE("1qYZHiy7MWj4GlMsKG2TgWHv7Veacbuzb") },
+    { nome: "Ará Guarani",              aldeia: "Piraque-Açu",     video: "videos/ara-guarani.mp4" },
+    { nome: "Cláudia Guarani",          aldeia: "Nova Esperança",  video: "videos/claudia-guarani.mp4" },
+    { nome: "Cláudiomiro Guarani",      aldeia: "Boa Esperança",   video: "videos/claudiomiro-guarani.mp4" },
+    { nome: "Daniela Tupinikim",        aldeia: "Caieiras Velha",  video: "videos/daniela-tupinikim.mp4" },
+    { nome: "Fran Guarani",             aldeia: "Boa Esperança",   video: "videos/fran-guarani.mp4" },
     // No Drive também existe "FRANCISCO GONCALVES - 13.mp4" (id 1izqjZmfh1_3hbE9bK4cQW7_IyYnPEJnB)
-    { nome: "Francisco Guarani",        aldeia: "Nova Esperança",  video: DRIVE("1I7Em8C0MMUEB7iQCfTXLCxDe8mRmLZYR") },
-    { nome: "Josias Guarani",           aldeia: "Boa Esperança",   video: DRIVE("1K3nKqPyIKC-3FpuyKmxMhVgIUSL18peQ") },
-    { nome: "Lua Tupinikim",            aldeia: "Caieiras Velha",  video: DRIVE("1jrkUi3Fll4WdZHSMNZl0EQPFvaQslRQH") },
-    { nome: "Marcelo Guarani",          aldeia: "Nova Esperança",  video: DRIVE("1dtQUSCXPXAqcCe9xiMempo6JVgQepOTr") },
-    { nome: "Margarida Tupinikim",      aldeia: "Caieiras Velha",  video: DRIVE("1vVno4-R218U_8qkqcoXpR1cSN3bB9lMS") },
-    { nome: "Mestre Mizinho Tupinikim", aldeia: "Caieiras Velha",  video: DRIVE("198P-CS37LjsrvrQqSdyghK26Sx7Q-0EP") },
-    { nome: "Michel Tupinikim",         aldeia: "Caieiras Velha",  video: DRIVE("1RGnyDP5CUZE7EdJKmmY89Q7MZXLFe8Dt") },
-    { nome: "Nobert Tupinikim",         aldeia: "Caieiras Velha",  video: DRIVE("19sTKQkBPtsz8KnLPxwpMMXC4Yx3iPKCU") },
-    { nome: "Reinalda Tupinikim",       aldeia: "Caieiras Velha",  video: DRIVE("1ULT9XrVl3tuk4Rt5hcWbK2jQcMFVf7H4") },
-    { nome: "Rogério Tupinikim",        aldeia: "Pau Brasil",      video: DRIVE("1wcdHDSE-_yVFhYnN7m5smG44wOnNNmev") },
-    { nome: "Sr. Pedro Tupinikim",      aldeia: "Areal",           video: DRIVE("1e5hz7wF-gAUzgYxQRiOgFhh0m4mDRJ0p") },
-    { nome: "Selenilda Tupinikim",      aldeia: "Caieiras Velha",  video: DRIVE("1zNQ1NePlFc_uEc-sy0GVt8gduwwY-jOk") },
-    { nome: "Sônia Guarani",            aldeia: "Boa Esperança",   video: DRIVE("1uS9jRzBwdjR8sujfjAl49XXlfbBN0t0j") },
+    { nome: "Francisco Guarani",        aldeia: "Nova Esperança",  video: "videos/francisco-guarani.mp4" },
+    { nome: "Josias Guarani",           aldeia: "Boa Esperança",   video: "videos/josias-guarani.mp4" },
+    { nome: "Lua Tupinikim",            aldeia: "Caieiras Velha",  video: "videos/lua-tupinikim.mp4" },
+    { nome: "Marcelo Guarani",          aldeia: "Nova Esperança",  video: "videos/marcelo-guarani.mp4" },
+    { nome: "Margarida Tupinikim",      aldeia: "Caieiras Velha",  video: "videos/margarida-tupinikim.mp4" },
+    { nome: "Mestre Mizinho Tupinikim", aldeia: "Caieiras Velha",  video: "videos/mestre-mizinho-tupinikim.mp4" },
+    { nome: "Michel Tupinikim",         aldeia: "Caieiras Velha",  video: "videos/michel-tupinikim.mp4" },
+    { nome: "Nobert Tupinikim",         aldeia: "Caieiras Velha",  video: "videos/nobert-tupinikim.mp4" },
+    { nome: "Reinalda Tupinikim",       aldeia: "Caieiras Velha",  video: "videos/reinalda-tupinikim.mp4" },
+    { nome: "Rogério Tupinikim",        aldeia: "Pau Brasil",      video: "videos/rogerio-tupinikim.mp4" },
+    { nome: "Sr. Pedro Tupinikim",      aldeia: "Areal",           video: "videos/sr-pedro-tupinikim.mp4" },
+    { nome: "Selenilda Tupinikim",      aldeia: "Caieiras Velha",  video: "videos/selenilda-tupinikim.mp4" },
+    { nome: "Sônia Guarani",            aldeia: "Boa Esperança",   video: "videos/sonia-guarani.mp4" },
 
     // ---- sem vídeo ----
     { nome: "Jocelino Tupinikim",       aldeia: "Nova Esperança",  video: null },

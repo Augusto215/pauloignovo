@@ -51,33 +51,52 @@
       return btn;
     }
     btn.setAttribute("aria-label", `${t("assistir")}: ${titulo}`);
-    btn.addEventListener("click", () => abrirPlayer(v, titulo));
+    btn.addEventListener("click", () => abrirPlayer(v, titulo, thumb));
     return btn;
   }
 
   /* ---------- player ---------- */
   const player = $("player");
-  function abrirPlayer(v, titulo) {
+  function abrirPlayer(v, titulo, thumb) {
     const tela = $("player-tela");
     tela.replaceChildren();
-    let el;
+    $("player-nome").textContent = titulo;
+    player.classList.add("cheia");
+
     if (v.tipo === "iframe") {
-      el = document.createElement("iframe");
+      const el = document.createElement("iframe");
       el.allow = "autoplay; fullscreen; picture-in-picture";
       el.allowFullscreen = true;
       el.title = titulo;
-    } else {
-      el = document.createElement("video");
-      el.controls = true;
-      el.autoplay = true;
-      el.playsInline = true;
+      el.src = v.src;
+      tela.appendChild(el);
+      player.showModal();
+      entrarTelaCheia(document.documentElement);
+      return;
     }
+
+    /* Arquivo de vídeo do próprio site: já começa a tocar e abre em tela
+       cheia nativa. Tudo precisa acontecer dentro do toque na miniatura,
+       senão o navegador bloqueia. */
+    const el = document.createElement("video");
+    el.controls = true;
+    el.preload = "auto";
+    if (thumb) el.poster = thumb;
+    // iPhone não tem requestFullscreen: sem "playsinline" o play() já abre
+    // o player nativo do iOS em tela cheia.
+    const iPhone = !el.requestFullscreen && !el.webkitRequestFullscreen && !!el.webkitEnterFullscreen;
+    el.playsInline = !iPhone;
     el.src = v.src;
+    el.addEventListener("ended", fecharPlayer);
+    el.addEventListener("webkitendfullscreen", fecharPlayer); // iPhone: tocou em "OK"/fechar
     tela.appendChild(el);
-    $("player-nome").textContent = titulo;
-    player.classList.add("cheia");
     player.showModal();
-    entrarTelaCheia();
+    Promise.resolve(el.play()).catch(() => {});
+    if (iPhone) {
+      try { el.webkitEnterFullscreen(); } catch (e) { /* o play() já abre em tela cheia */ }
+    } else {
+      entrarTelaCheia(el);
+    }
   }
   function fecharPlayer() {
     $("player-tela").replaceChildren(); // para o vídeo
@@ -85,14 +104,13 @@
   }
 
   /* O vídeo sempre abre em tela cheia (computador e celular). No Android
-     também gira a tela para deitado. Onde o navegador não deixa entrar em
-     tela cheia sozinho (iPhone), fica a tela cheia via CSS (classe .cheia). */
-  function entrarTelaCheia() {
-    const raiz = document.documentElement;
-    const pedir = raiz.requestFullscreen || raiz.webkitRequestFullscreen;
+     também gira a tela para deitado. Se o navegador recusar, fica a tela
+     cheia via CSS (classe .cheia). */
+  function entrarTelaCheia(alvo) {
+    const pedir = alvo.requestFullscreen || alvo.webkitRequestFullscreen;
     if (!pedir) return;
     try {
-      Promise.resolve(pedir.call(raiz, { navigationUI: "hide" }))
+      Promise.resolve(pedir.call(alvo, { navigationUI: "hide" }))
         .then(() => screen.orientation && screen.orientation.lock && screen.orientation.lock("landscape"))
         .catch(() => {});
     } catch (e) { /* navegador não deixou: segue com a tela cheia via CSS */ }
