@@ -62,6 +62,8 @@
     tela.replaceChildren();
     $("player-nome").textContent = titulo;
     player.classList.add("cheia");
+    // iframe (Drive/YouTube/Vimeo) ocupa a tela toda e o próprio player enquadra o vídeo
+    player.classList.toggle("com-iframe", v.tipo === "iframe");
 
     if (v.tipo === "iframe") {
       const el = document.createElement("iframe");

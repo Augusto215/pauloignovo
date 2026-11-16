@@ -347,3 +347,19 @@ html, body { overflow-x: hidden; }
 @media (orientation: landscape) {
   .player.cheia .player-nome { display: none; }
 }
+
+/* Drive/YouTube/Vimeo: o iframe ocupa a tela inteira (sem caixa 16:9) e o
+   player deles centraliza o vídeo. Em pé, começa abaixo do título e do X
+   para não cobrir os controles. */
+.player.cheia.com-iframe { align-items: stretch; }
+.player.cheia.com-iframe .player-tela {
+  width: 100vw;
+  height: calc(100dvh - 3rem);
+  margin-top: 3rem;
+  aspect-ratio: auto;
+}
+/* iPhone: iframe tende a estourar a largura do pai; isso o prende nela */
+.player.cheia.com-iframe .player-tela iframe { width: 1px; min-width: 100%; }
+@media (orientation: landscape) {
+  .player.cheia.com-iframe .player-tela { height: 100dvh; margin-top: 0; }
+}
