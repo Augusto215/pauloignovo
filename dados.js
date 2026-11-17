@@ -99,7 +99,7 @@ const EXPOSICAO = {
   artistas: [
     { nome: "Ará Guarani",              aldeia: "Piraque-Açu",     video: "videos/ara-guarani.mp4" },
     { nome: "Cláudia Guarani",          aldeia: "Nova Esperança",  video: "videos/claudia-guarani.mp4" },
-    { nome: "Cláudiomiro Guarani",      aldeia: "Boa Esperança",   video: DRIVE("1K5VKBprUbL6Xva05LCSL2vv6kTqSVJ5p") },
+    { nome: "Cláudiomiro Guarani",      aldeia: "Boa Esperança",   video: "videos/claudiomiro-guarani.mp4" },
     { nome: "Daniela Tupinikim",        aldeia: "Caieiras Velha",  video: "videos/daniela-tupinikim.mp4" },
     { nome: "Fran Guarani",             aldeia: "Boa Esperança",   video: "videos/fran-guarani.mp4" },
     { nome: "Francisco Guarani",        aldeia: "Nova Esperança",  video: "videos/francisco-guarani.mp4" },
@@ -114,7 +114,7 @@ const EXPOSICAO = {
     { nome: "Rogério Tupinikim",        aldeia: "Pau Brasil",      video: "videos/rogerio-tupinikim.mp4" },
     { nome: "Sr. Pedro Tupinikim",      aldeia: "Areal",           video: "videos/sr-pedro-tupinikim.mp4" },
     { nome: "Selenilda Tupinikim",      aldeia: "Caieiras Velha",  video: "videos/selenilda-tupinikim.mp4" },
-    { nome: "Sônia Guarani",            aldeia: "Boa Esperança",   video: DRIVE("1uS9jRzBwdjR8sujfjAl49XXlfbBN0t0j") },
+    { nome: "Sônia Guarani",            aldeia: "Boa Esperança",   video: "videos/sonia-guarani.mp4" },
 
     // ---- sem vídeo ----
     { nome: "Jocelino Tupinikim",       aldeia: "Nova Esperança",  video: null },
