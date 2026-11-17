@@ -16,7 +16,7 @@
     if (!url) return null;
     let m;
     if ((m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/))([\w-]{11})/)))
-      return { tipo: "iframe", src: `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0` };
+      return { tipo: "iframe", src: `https://www.youtube-nocookie.com/embed/${m[1]}?autoplay=1&rel=0&playsinline=1${location.protocol.startsWith("http") ? `&origin=${encodeURIComponent(location.origin)}` : ""}` };
     if ((m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/)))
       return { tipo: "iframe", src: `https://player.vimeo.com/video/${m[1]}?autoplay=1` };
     if ((m = url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([\w-]+)/)))
@@ -69,6 +69,8 @@
       const el = document.createElement("iframe");
       el.allow = "autoplay; fullscreen; picture-in-picture";
       el.allowFullscreen = true;
+      // YouTube pede login ("não é um bot") quando o iframe não manda o endereço do site
+      el.referrerPolicy = "strict-origin-when-cross-origin";
       el.title = titulo;
       el.src = v.src;
       tela.appendChild(el);
