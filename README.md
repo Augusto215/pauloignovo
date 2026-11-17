@@ -2,9 +2,8 @@
 
 ## Vídeos
 
-Hoje os vídeos vêm do Google Drive (abrem em tela cheia; o play é manual).
-Opcionalmente dá para servir `.mp4` pelo próprio site, que aí já começam a
-tocar sozinhos, inclusive no iPhone. Esses arquivos **não vão para o git**:
+Os vídeos são `.mp4` servidos pelo próprio site (abrem em tela cheia e já
+tocam, inclusive no iPhone). Esses arquivos **não vão para o git**:
 ficam na pasta `videos/`, ao lado do `docker-compose.yml`, que é montada no
 container.
 
@@ -18,6 +17,8 @@ ffmpeg -i original.mov -vf "scale=-2:720,format=yuv420p" -c:v libx264 -preset me
   -crf 23 -maxrate 2500k -bufsize 5000k -c:a aac -b:a 128k -movflags +faststart \
   videos/nome-do-artista.mp4
 ```
+
+Os originais (HEVC, ~300 MB cada) ficam em `videos1/`, também fora do git.
 
 Para enviar ao servidor (da sua máquina):
 
